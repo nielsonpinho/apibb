@@ -9,7 +9,7 @@ class SolicitaExtrato(forms.Form):
         max_length=50,
         #min_length=3,
         required=False,
-        validators=[],
+        
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
@@ -23,7 +23,6 @@ class SolicitaExtrato(forms.Form):
         max_length=14,
         #min_length=3,
         required=False,
-        validators=[],
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',

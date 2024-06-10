@@ -19,8 +19,30 @@
 <body >
     <div class="container mt-2 row g-3 my-5">
         {% block content %}
+            {%if qtd_pesquisa_repetida == 1 %}
+            <h1 class="text-danger" > Atenção! Essa pesquisa ja foi realizada anteriormente pelo seguinte usuário:</h1>
+            <ul>
+                {% for pesquisa_repetida in pesquisas_repetidas %}
+                    <li class="text-danger" >Usuário: {{ pesquisa_repetida.usuario }} </li>
+                    <li class="text-danger" >Data da Pesquisa: {{ pesquisa_repetida.date_added }} </li>
+                    <br>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            {%if qtd_pesquisa_repetida > 1 %}
+            <h1 class="text-danger"> Atenção! Essa pesquisa ja foi realizada {{ qtd_pesquisa_repetida }} vezes pelos seguintes usuários:</h1>
+            <ul>
+                {% for pesquisa_repetida in pesquisas_repetidas %}
+                    <li class="text-danger" >Usuário: {{ pesquisa_repetida.usuario }} </li>
+                    <li class="text-danger" >Data da Pesquisa: {{ pesquisa_repetida.date_added }} </li>
+                    <br>
+                {% endfor %}
+            </ul>
+            
+            {% endif %}
+
             {% if not extrato == 'vazio'%}
-            <h1> Foram encontrados {{ extrato|length }} resultados para a sua pesquisa:</h1>
+            <h2 class="text-success" > Foram encontrados {{ extrato|length }} resultados para a sua pesquisa:</h2>
             {% for resultado in extrato %}
                 <div class="col-3" >
                     <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
